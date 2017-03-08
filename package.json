@@ -1,0 +1,11 @@
+{
+  "name": "anthology-server",
+  "version": "0.0.1",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "wbradshaw",
+  "license": "ISC"
+}
