@@ -1,5 +1,3 @@
-// var mailParser = require('mailparser').simpleParser;
-// var gmail = require('./authenticate');
 var jwt = require('jsonwebtoken');
 var express = require('express');
 var app = express();
@@ -12,12 +10,20 @@ var storyRouter = require('./handlers/storyHandler');
 var config = require('./configs/config');
 var homeRouter = express.Router();
 
+var allowCrossDomain = function (req, res, next) {
+  res.header('Access-Control-Allow-Origin', 'http://localhost:4200');
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+
+  next();
+}
+
 mongoose.connect(config.database);
 
 app.use(bodyParser.urlencoded({ 'extended': 'true' }));
 app.use(bodyParser.json());
 app.use(morgan('dev'));
-
+app.use(allowCrossDomain);
 app.use(express.static(path.join(__dirname, '/')));
 app.use('/api', storyRouter);
 

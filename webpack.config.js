@@ -3,25 +3,16 @@ const path = require('path');
 
 module.exports = {
   context: path.join(__dirname, '/src'),
-  entry: {app: './app.js'},
+  entry: { app: './server.js' },
   output: {
-    path: path.join(__dirname, 'js'),
+    path: path.join(__dirname, '/src/js'),
     filename: 'app.bundle.js'
   },
   devtool: 'eval-soure-map',
-  debug: true,
-  verboase: true,
+  target: "node",
   module: {
-    loaders: [{
-      test: __dirname,
-      loader: 'babel-loader',
-      query: {
-        cacheDirectory: 'babel_cache',
-        presets: ['angular2', 'es2015']
-      }
-    }]
+    loaders: [{ test: /\.json$/, loader: "json-loader" }]
   },
-  vendor: ['angular'],
   plugins: [
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
