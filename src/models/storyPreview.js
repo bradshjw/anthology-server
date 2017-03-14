@@ -3,8 +3,8 @@ var Author = require('./author');
 var Schema = mongoose.Schema;
 
 var StoryPreview = mongoose.model('StoryPreview', new Schema({
-  _id: String,
-  _threadId: String,
+  id: String,
+  threadId: String,
   title: String,
   excerpt: String,
   received: Date,
